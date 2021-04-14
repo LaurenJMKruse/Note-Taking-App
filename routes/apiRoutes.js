@@ -9,7 +9,7 @@ const archive = require('../db/archive');
 
 
 // *******************************
-// C. CRUD Actions
+// C. GET and various CRUD Actions
 
 // 01. Retrieve all notes
 router.get('/notes', (req, res) => {
@@ -37,9 +37,11 @@ router.post('/notes', (req, res) => {
 // 03. Delete a note
 router.delete('/notes/:id', (req, res) => {
     archive
-        .deleteNote(req.params.id)
-        .then(() => res.json({ ok: true }))
-        .catch((error) => {
+        .removeNote(req.params.id)
+        .then(() => {
+            res.json({ ok: true })
+            console.log(`Note deleted.`);  
+        }).catch((error) => {
             console.log(`An error has occurred!`);
             res.status(500).json(error);
         });
