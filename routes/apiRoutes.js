@@ -1,5 +1,5 @@
 // *******************************
-// A. Connect dependency (Express)
+// A. Connect Express dependency
 const router = require('express').Router();
 
 

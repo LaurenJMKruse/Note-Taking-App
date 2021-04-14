@@ -15,4 +15,61 @@ const readFileAsync = util.promisify(fs.readFile);
 const writeFileAsync = util.promisify(fs.writeFile);
 
 
-conste
+// *******************************
+// C. Archive actions: CRUD, GET, read, write
+class Archive {
+
+    // ------------------------------------
+    // 01. CRUD
+
+    // a. Create
+    addNote(note) {
+        const { title, text } = note;
+
+        // i. Check for missing input
+        if (!title) throw new Error('Your note must have a title.');
+        if (!text) throw new Error('You forgot to add your note!');
+
+        // ii. Add UUID
+        const newNote = { title, text, id: uuivdv1() };
+
+        // iii. Incorporate new note
+        return this.getNotes()
+            .then((notes) => [...notes, newNote])
+            .then((updatedNotes) => this.write(updatedNotes))
+            .then(() => {
+                console.log('Notes refreshed.');
+                newNote;
+            });
+        };
+
+    // b. Delete
+    removeNote(id) {
+        return this.getNotes()
+            .then((notes) => {
+                notes.filter((note) => note.id !== id)
+        }).then((filteredNotes) => this.write(filteredNotes));
+    };
+
+
+    // ------------------------------------
+    // 02. GET
+
+
+
+    // ------------------------------------
+    // 03. Read and Write
+
+    // a. Read
+
+
+
+    // b. Write
+
+};
+
+
+// *******************************
+// D. Export Archive
+module.exports = new Archive();
+
