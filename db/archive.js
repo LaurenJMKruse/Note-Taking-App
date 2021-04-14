@@ -16,7 +16,7 @@ const writeFileAsync = util.promisify(fs.writeFile);
 
 
 // *******************************
-// C. Archive actions: CRUD, GET, read, write
+// C. Archive actions: CRUD, GET and parse, read, write
 class Archive {
 
     // ------------------------------------
@@ -53,23 +53,33 @@ class Archive {
 
 
     // ------------------------------------
-    // 02. GET
+    // 02. GET notes to parse
+    getNotes() {
+        return this.read().then((notes) => {
+            let parsedNotes = [].concat(JSON.parse(notes));
 
+            return parsedNotes;
+        });
+    };
 
 
     // ------------------------------------
     // 03. Read and Write
 
     // a. Read
-
-
+    read() {
+        let readFile = readFileAsync('db/db.json', 'utf8');
+        return readFile;
+    };
 
     // b. Write
-
+    write(note) {
+        let writtenFile = writeFileAsync('db/db.json', JSON.stringify(note));
+        return writtenFile;
+    };
 };
 
 
 // *******************************
 // D. Export Archive
 module.exports = new Archive();
-
