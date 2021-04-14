@@ -27,28 +27,29 @@ class Archive {
         const { title, text } = note;
 
         // i. Check for missing input
-        if (!title) throw new Error('Your note must have a title.');
-        if (!text) throw new Error('You forgot to add your note!');
+        if (!title) {
+            throw new Error('Your note must have a title.');
+        }
+        
+        if (!text) {
+            throw new Error('You forgot to add your note!');
+        }
 
         // ii. Add UUID
-        const newNote = { title, text, id: uuivdv1() };
+        const newNote = { title, text, id: uuidv1() };
 
         // iii. Incorporate new note
         return this.getNotes()
             .then((notes) => [...notes, newNote])
             .then((updatedNotes) => this.write(updatedNotes))
-            .then(() => {
-                console.log('Notes refreshed.');
-                newNote;
-            });
-        };
+            .then(() => newNote);
+    };
 
     // b. Delete
     removeNote(id) {
         return this.getNotes()
-            .then((notes) => {
-                notes.filter((note) => note.id !== id)
-        }).then((filteredNotes) => this.write(filteredNotes));
+            .then((notes) => notes.filter((note) => note.id !== id))
+            .then((filteredNotes) => this.write(filteredNotes));
     };
 
 
@@ -56,8 +57,14 @@ class Archive {
     // 02. GET notes to parse
     getNotes() {
         return this.read().then((notes) => {
-            let parsedNotes = [].concat(JSON.parse(notes));
-
+            let parsedNotes;
+            
+            try {
+                parsedNotes = [].concat(JSON.parse(notes));
+            } catch (error) {
+                parsedNotes = [];
+            }
+            
             return parsedNotes;
         });
     };

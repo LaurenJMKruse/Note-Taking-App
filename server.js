@@ -17,7 +17,7 @@ const app = express();
 // *******************************
 // D. Establish port
 const PORT = process.env.PORT || 3000;
-
+const localhost = 'localhost:' + PORT;
 
 // *******************************
 // E. Establish Express middleware
@@ -31,5 +31,5 @@ app.use('/', htmlRoutes);
 // *******************************
 // F. Initialize server on the port
 app.listen(PORT, () => {
-    console.log(`Server now listening on PORT ${PORT}`);
+    console.log(`Server now listening on`, localhost);
 });
