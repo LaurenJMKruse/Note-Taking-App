@@ -19,8 +19,8 @@ SO THAT I can organize my thoughts and keep track of tasks I need to complete*
 <br>
 
 ## Installation
-* Runs in bash terminal; npm i to install dependencies
-* Deployed on Heroku
+* Back End: Runs in bash terminal; npm i to install dependencies
+* Front End: Deployed on Heroku: https://young-fortress-40007.herokuapp.com/
 <br>
 
 
