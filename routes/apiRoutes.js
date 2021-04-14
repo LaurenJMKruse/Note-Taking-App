@@ -11,7 +11,7 @@ const archive = require('../db/archive');
 // *******************************
 // C. GET and various CRUD Actions
 
-// 01. Retrieve all notes
+// 01. Retrieve all notes from Archive
 router.get('/notes', (req, res) => {
     archive
         .getNotes()
@@ -23,7 +23,7 @@ router.get('/notes', (req, res) => {
         });
 });
 
-// 02. Post a new note
+// 02. Post a new note to Archive
 router.post('/notes', (req, res) => {
     archive
         .addNote(req.body)
@@ -34,7 +34,7 @@ router.post('/notes', (req, res) => {
         });
 });
 
-// 03. Delete a note
+// 03. Delete a note from Archive
 router.delete('/notes/:id', (req, res) => {
     archive
         .removeNote(req.params.id)
