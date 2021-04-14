@@ -1,6 +1,10 @@
 // *******************************
-// A. Connect dependencies (native and Express)
+// A. Connect dependencies
+
+// 01. Built-in
 const path = require('path');
+
+// 02. Express
 const router = require('express').Router();
 
 
